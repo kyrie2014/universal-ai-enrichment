@@ -16,7 +16,15 @@
   - 单次模式：适合小数据集的快速处理
   - 涡轮模式：适合大数据集的高速并发处理
 
-## 安装说明
+## 功能展示
+### 1. 主界面
+<img width="451" height="480" alt="17664570611430" src="https://github.com/user-attachments/assets/fdedcdc9-9a7e-4d66-8757-fcd493653f63" />
+### 2. 输入输出配置
+<img width="451" height="393" alt="1766457166857" src="https://github.com/user-attachments/assets/a37bd29d-40ca-4709-a52f-43bb857cdb6b" />
+### 3. AI 配置
+<img width="375" height="317" alt="17664572063673" src="https://github.com/user-attachments/assets/3b697028-12b8-40b8-979f-a310c9ff7a12" />
+
+<img width="371" height="402" alt="17664572235509" src="https://github.com/user-attachments/assets/67d0a577-f43e-4156-857e-9fbb17e9fb68" />
 
 ### 系统要求
 
@@ -216,4 +224,5 @@ pyinstaller build_agent.spec
 - 批量处理
 - MCP集成
 - 多种处理模式
+
 
