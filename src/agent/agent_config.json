@@ -1,0 +1,270 @@
+{
+  "_description": "通用AI Agent配置文件 - 支持自定义输入输出列",
+  "_version": "1.0.0",
+  "active_schema": "company_enrichment",
+  "schemas": {
+    "company_enrichment": {
+      "name": "企业信息补充",
+      "description": "补充企业基本信息、财务数据等",
+      "input_columns": [
+        {
+          "name": "公司",
+          "type": "string",
+          "required": true,
+          "description": "公司名称（支持简称或全称）"
+        }
+      ],
+      "output_columns": [
+        {
+          "name": "公司全名",
+          "type": "string",
+          "description": "公司的完整工商注册名称"
+        },
+        {
+          "name": "统一社会信用代码",
+          "type": "string",
+          "description": "18位统一社会信用代码"
+        },
+        {
+          "name": "法定代表人",
+          "type": "string",
+          "description": "公司法定代表人姓名"
+        },
+        {
+          "name": "注册地址",
+          "type": "string",
+          "description": "公司注册地址"
+        },
+        {
+          "name": "公司类型",
+          "type": "string",
+          "description": "如有限责任公司、股份有限公司等"
+        },
+        {
+          "name": "所属行业",
+          "type": "string",
+          "description": "公司所属的行业分类"
+        },
+        {
+          "name": "是否为中国企业500强",
+          "type": "boolean",
+          "description": "是否在2025中国民营企业500强榜单中"
+        },
+        {
+          "name": "是否上市",
+          "type": "boolean",
+          "description": "是否为上市公司"
+        },
+        {
+          "name": "注册资金（亿元）",
+          "type": "number",
+          "description": "注册资金，单位为亿元"
+        },
+        {
+          "name": "员工人数",
+          "type": "number",
+          "description": "公司员工总数"
+        },
+        {
+          "name": "成立时间",
+          "type": "string",
+          "description": "公司成立日期，格式如2010-01-01"
+        },
+        {
+          "name": "2023年营业额（亿元）",
+          "type": "number",
+          "description": "2023年营业收入，单位为亿元"
+        },
+        {
+          "name": "2024年营业额（亿元）",
+          "type": "number",
+          "description": "2024年营业收入，单位为亿元"
+        },
+        {
+          "name": "2023年净利润（亿元）",
+          "type": "number",
+          "description": "2023年净利润，单位为亿元，可为负数"
+        },
+        {
+          "name": "2024年净利润（亿元）",
+          "type": "number",
+          "description": "2024年净利润，单位为亿元，可为负数"
+        }
+      ],
+      "prompt_template": "你是一个专业的企业信息查询助手。请根据提供的公司名称，查询并返回以下信息：\n\n{output_fields_description}\n\n**重要说明**：\n1. 如果某个信息无法确定或查询不到，请填写\"N/A\"\n2. 金额单位统一为亿元，保留2位小数\n3. 净利润可以为负数（表示亏损）\n4. 是否字段用\"是\"或\"否\"表示\n5. 日期格式为YYYY-MM-DD\n6. 返回JSON格式，字段名必须与要求完全一致\n\n公司名称：{company_name}\n\n请返回JSON格式的结果。",
+      "batch_prompt_template": "你是一个专业的企业信息查询助手。请批量查询以下公司的信息：\n\n{companies_list}\n\n对于每家公司，请返回以下字段：\n{output_fields_description}\n\n**重要说明**：\n1. 如果某个信息无法确定或查询不到，请填写\"N/A\"\n2. 金额单位统一为亿元，保留2位小数\n3. 净利润可以为负数（表示亏损）\n4. 是否字段用\"是\"或\"否\"表示\n5. 日期格式为YYYY-MM-DD\n6. 返回JSON数组格式，每个元素对应一家公司\n7. 务必保证返回的公司数量与输入一致\n\n请返回JSON格式的结果。"
+    },
+    "custom_template": {
+      "name": "自定义模板",
+      "description": "用户可以完全自定义输入输出列",
+      "input_columns": [
+        {
+          "name": "输入列1",
+          "required": true,
+          "description": "第一个输入列"
+        }
+      ],
+      "output_columns": [
+        {
+          "name": "输出列1",
+          "type": "string",
+          "description": "第一个输出列"
+        }
+      ],
+      "prompt_template": "请根据以下输入信息：{input_data}\n\n查询并返回：{output_fields_description}\n\n返回JSON格式。",
+      "batch_prompt_template": "请批量处理以下数据：\n{batch_data}\n\n返回JSON数组格式。"
+    },
+    "product_enrichment": {
+      "name": "产品信息补充",
+      "description": "补充产品详细信息",
+      "input_columns": [
+        {
+          "name": "产品名称",
+          "required": true,
+          "description": "产品的名称或型号"
+        }
+      ],
+      "output_columns": [
+        {
+          "name": "产品全称",
+          "type": "string",
+          "description": "产品的完整名称"
+        },
+        {
+          "name": "品牌",
+          "type": "string",
+          "description": "产品所属品牌"
+        },
+        {
+          "name": "制造商",
+          "type": "string",
+          "description": "产品制造商"
+        },
+        {
+          "name": "产品类别",
+          "type": "string",
+          "description": "产品所属类别"
+        },
+        {
+          "name": "价格区间",
+          "type": "string",
+          "description": "产品的价格范围"
+        },
+        {
+          "name": "上市时间",
+          "type": "string",
+          "description": "产品上市日期"
+        },
+        {
+          "name": "主要特性",
+          "type": "string",
+          "description": "产品的主要特性和亮点"
+        }
+      ],
+      "prompt_template": "你是一个专业的产品信息查询助手。请根据提供的产品名称，查询并返回以下信息：\n\n{output_fields_description}\n\n产品名称：{input_data}\n\n如果某个信息无法确定，请填写\"N/A\"。返回JSON格式的结果。",
+      "batch_prompt_template": "你是一个专业的产品信息查询助手。请批量查询以下产品的信息：\n\n{batch_data}\n\n对于每个产品，返回：{output_fields_description}\n\n返回JSON数组格式。"
+    },
+    "person_enrichment": {
+      "name": "人物信息补充",
+      "description": "补充人物详细资料",
+      "input_columns": [
+        {
+          "name": "姓名",
+          "required": true,
+          "description": "人物姓名"
+        },
+        {
+          "name": "公司",
+          "required": false,
+          "description": "所在公司（可选，帮助消歧）"
+        }
+      ],
+      "output_columns": [
+        {
+          "name": "全名",
+          "type": "string",
+          "description": "人物全名"
+        },
+        {
+          "name": "职位",
+          "type": "string",
+          "description": "当前职位"
+        },
+        {
+          "name": "所在公司",
+          "type": "string",
+          "description": "当前所在公司"
+        },
+        {
+          "name": "教育背景",
+          "type": "string",
+          "description": "教育经历"
+        },
+        {
+          "name": "工作经历",
+          "type": "string",
+          "description": "主要工作经历"
+        },
+        {
+          "name": "专业领域",
+          "type": "string",
+          "description": "专业领域或擅长方向"
+        }
+      ],
+      "prompt_template": "你是一个专业的人物信息查询助手。请根据提供的信息，查询并返回：\n\n{output_fields_description}\n\n输入信息：{input_data}\n\n如果某个信息无法确定，请填写\"N/A\"。返回JSON格式的结果。",
+      "batch_prompt_template": "你是一个专业的人物信息查询助手。请批量查询以下人物的信息：\n\n{batch_data}\n\n返回JSON数组格式，包含：{output_fields_description}"
+    }
+  },
+  "ai_settings": {
+    "provider": "openai_compatible",
+    "api_key": "sk-a457fc06aaf943fb80f15f590f39da73",
+    "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "model": "deepseek-v3",
+    "temperature": 0.1,
+    "max_tokens": 4000,
+    "timeout": 30,
+    "enable_web_search": true,
+    "enable_batch_mode": true,
+    "batch_size": 15,
+    "enable_turbo_mode": false,
+    "turbo_batch_size": 100,
+    "turbo_concurrent_requests": 5,
+    "enable_mcp": true,
+    "mcp_servers": [
+      {
+        "name": "web_search",
+        "enabled": true,
+        "description": "网页搜索工具，用于查询最新信息",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-brave-search"
+        ],
+        "env": {
+          "BRAVE_API_KEY": ""
+        }
+      },
+      {
+        "name": "database",
+        "enabled": false,
+        "description": "数据库查询工具",
+        "command": "python",
+        "args": [
+          "-m",
+          "mcp_server_sqlite"
+        ],
+        "env": {}
+      }
+    ],
+    "enable_deep_thinking": false,
+    "enable_one_shot_mode": false,
+    "one_shot_max_companies": 100
+  },
+  "processing_settings": {
+    "skip_existing": true,
+    "auto_save_interval": 10,
+    "error_handling": "skip",
+    "max_retries": 3,
+    "retry_delay": 2
+  }
+}
